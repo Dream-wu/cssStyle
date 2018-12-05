@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Y轴翻转效果</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    .box {
+      width: 100px;
+      height: 200px;
+      position: relative;
+      perspective: 500;
+      /*重要,使被转换的子元素保留其 3D 转换：*/
+      transform-style: preserve-3d;
+      transform: perspective(500px);
+      border: 1px solid #666;
+    }
+
+    .card {
+      width: 100px;
+      height: 200px;
+      backface-visibility: hidden;
+      transition: 0.8s;
+    }
+
+    .front {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      z-index: 2;
+      background: yellow;
+    }
+
+    .box:hover .front {
+      transform: rotateY(-180deg);
+    }
+
+    .box:hover .back {
+      transform: rotateY(0deg);
+    }
+
+    .back {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      background: blue;
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div class="card front">
+      <p>1</p>
+      <p>这是一个正面</p>
+    </div>
+    <div class="card back">
+      <p>1</p>
+      <p>这是一个反面</p>
+    </div>
+  </div>
+</body>
+
+</html>
